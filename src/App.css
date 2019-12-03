@@ -1,0 +1,123 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #09d3ac;
+}
+
+.main-page {
+  background-color: #f1f1f1;
+}
+.main-page > h4 {
+  font-size: 24px;
+  color: #3d9458;
+  margin-top: 20px;
+}
+
+.main-page > .line {
+  border: 1px solid #3d9458;
+  width: 45px;
+  margin-bottom: 20px;
+}
+
+.main-page .store-info {
+  background: #fff;
+  padding: 10px;
+  margin-left: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.main-page .store-info img {
+  width: 100%;
+}
+
+.main-page .store-info h3 {
+  text-transform: uppercase;
+  font-size: 14px;
+  margin-top: 15px;
+}
+.main-page .store-info.message {
+  height: 300px;
+}
+.main-page .store-info div.title {
+  font-weight: bold;
+  opacity: 0.4;
+}
+
+.main-page .store-info button.btn {
+  display: block;
+  width: 100%;
+  background: #dcdbdb;
+  margin-top: 20px;
+  color: #000;
+}
+
+.headers {
+  border-bottom: 1px solid #f1f1f1;
+  border-right: 1px solid #f1f1f1;
+}
+
+.sidebar {
+  border-right: 1px solid #f1f1f1;
+}
+
+.profile-popup {
+  max-width: 800px !important;
+}
+
+.profile-popup .modal-body h4 {
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.profile-popup .modal-body input {
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.profile-popup .modal-body input.input-half {
+  width: 40%;
+}
+
+.profile-popup .modal-body select {
+  display: inline-block;
+  margin-bottom: 15px;
+  width: 25%;
+  margin-left: 5%;
+}
+.profile-popup .modal-body p {
+  margin-bottom: 5px;
+}
+
+.profile-popup .modal-body button {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.profile-popup .modal-body button.btn-primary {
+  background-color: #3d9458;
+  border-color: #3d9458;
+}
+.profile-popup .modal-body button.btn-secondary {
+  background-color: #fff;
+  border-color: #fff;
+  color: #000;
+}
