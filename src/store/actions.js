@@ -4,6 +4,7 @@ export const GLOGAL_ACTIONS = {
   GET_PROFILE_DATA: "GET_PROFILE_DATA",
   UPDATE_PROFILE_TEMP_DATA: "UPDATE_PROFILE_TEMP_DATA",
   UPDATE_PROFILE_INVOICE_TEMP_DATA: "UPDATE_PROFILE_INVOICE_TEMP_DATA",
+  CHANGE_IMAGE: "CHANGE_IMAGE"
 };
 
 export const updateAppLoading = payload => (dispatch) => {
@@ -28,6 +29,13 @@ export const updateProfileInvoiceTemp = (key, value) => (dispatch) => {
   });
 };
 
+export const changeImage = (file, url) => (dispatch) => {
+  dispatch({
+    type: GLOGAL_ACTIONS.CHANGE_IMAGE,
+    payload: {file, url},
+  });
+};
+
 export const updateProfile = () => (dispatch, getState) => {
   const state = getState()
   fakeRequest(state.global.data.profileTemp)
@@ -42,7 +50,7 @@ export const updateProfile = () => (dispatch, getState) => {
 export const getProfileData = () => (dispatch) => {
   let request = {
       id: '1',
-      logo: '',
+      logo: require('../logo.png'),
       name: 'KOI THE',
       address: '123',
       district: 'dist1',

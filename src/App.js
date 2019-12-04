@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { updateAppLoading, getProfileData } from './store/actions'
-import logo from './logo.png'
-import Popup from './Popup'
+import Popup from './component/Popup'
 
 class App extends Component {
   render() {
@@ -21,7 +19,7 @@ class App extends Component {
               <div className='line'></div>
             <div className='row'>
               <div className='col-4 store-info'>
-                <img alt='' src={logo}/>
+                <img alt='' src={profile.logo}/>
                 <h3>store info</h3>
                 <div className='row'>
                   <div className='col-4 title'>Name:</div>
@@ -57,8 +55,6 @@ const mapStateToProps = ({ global }) => ({
   profile: global.data.profile
 });
 const mapDispatchToProps = {
-  updateAppLoadingAction: updateAppLoading,
-  getProfileDataAction: getProfileData
 };
 
 export default connect(

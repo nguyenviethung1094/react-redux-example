@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getProfileData, updateProfileTemp, updateProfileInvoiceTemp, updateProfile } from './store/actions'
+import { getProfileData, updateProfileTemp, updateProfileInvoiceTemp, updateProfile } from '../store/actions'
 import { Button, Modal, ModalHeader, ModalBody, Input, Toast, ToastHeader, ToastBody } from 'reactstrap';
-import checkPhoneNumber from './utils/checkPhone'
+import checkPhoneNumber from '../utils/checkPhone'
+import checkStoreName from '../utils/checkName'
+import UploadImage from './uploadImg'
 
 
 class Popup extends Component {
@@ -20,7 +22,8 @@ class Popup extends Component {
     ]
     this.state = {
       modal: false,
-      toast: false
+      toast: false,
+      toastName: false
     }
   }
 
@@ -37,6 +40,11 @@ class Popup extends Component {
     if (value) this.setState({toast: value})
     else this.setState({toast: !toast})
   }
+  toggleToastName (value) {
+    let { toastName } = this.state
+    if (value) this.setState({toastName: value})
+    else this.setState({toastName: !toastName})
+  }
 
   onInputChange = (e) => {
     this.props.updateAction(e.target.name, e.target.value)
@@ -52,6 +60,11 @@ class Popup extends Component {
       this.toggleToast(true)
       return
     }
+    let isValid = checkStoreName(profileTemp.name)
+    if(!!checkStoreName(profileTemp.name)) {
+      this.toggleToastName(true)
+      return
+    }
     this.props.updateProfileAction(profileTemp);
     this.toggle()
   }
@@ -59,7 +72,7 @@ class Popup extends Component {
   render () {
     const {className, profileTemp} = this.props;
     
-    const {modal, toast} = this.state;
+    const {modal, toast, toastName} = this.state;
     let currCity = this.address.filter((e) => e.city === profileTemp.city)
     return (
     <div>
@@ -71,11 +84,18 @@ class Popup extends Component {
           <div className='row'>
             <div className='col-5 store-img'>
               <h4>Store image</h4>
+              <UploadImage />
             </div>
             <div className='col-7'>
               <h4>Basic Info.</h4>
               <p>Store name</p>
               <Input onChange={this.onInputChange} name='name' type='text' value={profileTemp.name} className='input-full' />
+              <Toast isOpen={toastName}>
+                <ToastHeader icon="danger" toggle={()=>this.toggleToastName()}>Error</ToastHeader>
+                <ToastBody>
+                  This name is already use or empty
+                </ToastBody>
+              </Toast>
               <p>Store Address</p>
               <Input onChange={this.onInputChange} name='address' type='text' placeholder='Address' value={profileTemp.address} className='input-half' />
               <Input onChange={this.onInputChange} type='select' value={profileTemp.district} name='district'>
@@ -97,7 +117,7 @@ class Popup extends Component {
               <p>Phone #</p>
               <Input onChange={this.onInputChange} name='phone' type='text' value={profileTemp.phone} className='input-full' />
               <Toast isOpen={toast}>
-                <ToastHeader toggle={()=>this.toggleToast()}>Eroor</ToastHeader>
+                <ToastHeader  icon="danger" toggle={()=>this.toggleToast()}>Error</ToastHeader>
                 <ToastBody>
                   Your Phone number is invalid!
                 </ToastBody>

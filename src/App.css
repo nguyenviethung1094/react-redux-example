@@ -121,3 +121,23 @@
   border-color: #fff;
   color: #000;
 }
+
+
+.profile-popup .modal-body .logo-upload {
+  text-align: right;
+}
+
+.profile-popup .modal-body .logo-upload img {
+  width: 100%;
+}
+
+.profile-popup .modal-body .logo-upload button {
+  display: inline-block;
+  width: auto;
+  margin-top: 15px;
+}
+
+.profile-popup .modal-body .logo-upload button.upload {
+  background: #dcdbdb;
+  color: #333;
+}

@@ -83,6 +83,14 @@ const global = (state = initialState, action) => {
               } 
             },
           });
+          case GLOGAL_ACTIONS.CHANGE_IMAGE:
+            return update(state, {
+              data: {
+                profileTemp: {
+                  logo: { $set:action.payload.url },
+                } 
+              },
+            });
     default:
       return state;
   }
