@@ -5,6 +5,7 @@ import { Button, Modal, ModalHeader, ModalBody, Input, Toast, ToastHeader, Toast
 import checkPhoneNumber from '../utils/checkPhone'
 import checkStoreName from '../utils/checkName'
 import UploadImage from './uploadImg'
+import { checkUniqueName } from '../service'
 
 
 class Popup extends Component {
@@ -60,13 +61,15 @@ class Popup extends Component {
       this.toggleToast(true)
       return
     }
-    let isValid = checkStoreName(profileTemp.name)
-    if(!!checkStoreName(profileTemp.name)) {
-      this.toggleToastName(true)
-      return
-    }
-    this.props.updateProfileAction(profileTemp);
-    this.toggle()
+    checkUniqueName(profileTemp.name)
+    .then((res) => {
+       if (!!res.data) {
+        this.toggleToastName(true)
+        return
+       }
+       this.props.updateProfileAction(profileTemp);
+       this.toggle()
+    })
   }
 
   render () {
